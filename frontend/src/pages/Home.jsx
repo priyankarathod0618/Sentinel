@@ -1,12 +1,21 @@
-import { Link } from 'react-router-dom'
-import WelcomeMessage from '../components/WelcomeMessage'
+import { useEffect } from 'react'
+import apiRequest from '../api/api'
 
 function Home() {
+
+  useEffect(() => {
+    apiRequest('/health')
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }, [])
+
   return (
     <div>
-      <WelcomeMessage />
-
-      <Link to="/login">Go to Login</Link>
+      <h1>Sentinel</h1>
     </div>
   )
 }
